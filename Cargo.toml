@@ -16,7 +16,7 @@ snappy = []
 
 [dependencies]
 libc = "0.2.*"
-link-cplusplus = "1.0"
+link-cplusplus = { git = "https://github.com/jonas-schievink/link-cplusplus", branch = "links" }
 
 [build-dependencies]
 cmake = "0.1"
