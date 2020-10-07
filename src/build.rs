@@ -90,17 +90,5 @@ fn main() {
     // Build LevelDB
     build_leveldb(snappy_prefix);
 
-    // Link to the standard C++ library
-    let target = env::var("TARGET").unwrap();
-    if target.contains("apple") || target.contains("freebsd") {
-        println!("cargo:rustc-link-lib=c++");
-    } else if target.contains("gnu") || target.contains("netbsd") || target.contains("openbsd") {
-        println!("cargo:rustc-link-lib=stdc++");
-    } else if target.contains("musl") {
-        // We want to link to libstdc++ *statically*. This requires that the user passes the right
-        // search path to rustc via `-Lstatic=/path/to/libstdc++`.
-        println!("cargo:rustc-link-lib=static=stdc++");
-    }
-
     println!("[build] Finished");
 }
