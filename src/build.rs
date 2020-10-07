@@ -100,6 +100,10 @@ fn main() {
         // We want to link to libstdc++ *statically*. This requires that the user passes the right
         // search path to rustc via `-Lstatic=/path/to/libstdc++`.
         println!("cargo:rustc-link-lib=static=stdc++");
+
+        if let Ok(p) = env::var("LEVELDB_STDCXX_SEARCH_PATH") {
+            println!("cargo:rustc-link-search=native={}", p);
+        }
     }
 
     println!("[build] Finished");
